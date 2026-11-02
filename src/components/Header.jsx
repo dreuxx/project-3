@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 
 const links = [
+  { id: "biblioteca", number: "04", label: "Archive" },
   { id: "explorar", number: "01", label: "Explore" },
   { id: "conceptos", number: "02", label: "The essentials" },
   { id: "tipos", number: "03", label: "Types of RNA" },

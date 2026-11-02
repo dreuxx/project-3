@@ -1,68 +1,72 @@
-# Project 3: Project 2 Enhancement
+# Project 3: RNA in 3D · Molecular Notebook
 
-## Goal
+Este proyecto conserva la aplicación de **Project 2** y solo realizará los cambios necesarios para cumplir los requisitos de **Project 3**. Se mantendrán el contenido, las ilustraciones, el estilo y la estructura actual de React.
 
-This project starts from **Project 2**. The only planned change is to adapt that project so it satisfies the **Project 3** requirements, while preserving its existing React structure, content, and design.
+## Cambio previsto sobre Project 2
 
-## Project 2 change required for Project 3
+La aplicación se actualizará para cumplir estos requisitos:
 
-The Project 2 application will be updated to:
+1. **API real:** consultar una API pública que no requiera OAuth.
+2. **Tres estados en cada consulta:** mostrar una carga visible, un error entendible con opción de reintentar y los datos recibidos. Nunca debe quedar una pantalla en blanco.
+3. **`useEffect` correcto:** usar arrays de dependencias adecuados, evitar bucles infinitos y no consultar en cada pulsación sin debounce o una acción intencional.
+4. **Hook personalizado:** incorporar un hook como `useFetch(url)` que devuelva `data`, `loading` y `error`.
+5. **Búsqueda o filtro:** permitir reducir los datos ya cargados desde la interfaz.
+6. **Error demostrable:** permitir probar el estado de error con una URL rota en desarrollo o mediante el manejo de una caída de red.
+7. **Netlify:** publicar la aplicación con `npm run build` y `dist`.
 
-1. **Use a real public API:** fetch data from a public API that does not require an OAuth flow.
-2. **Implement the three-states pattern everywhere:** every fetch will show a visible loading state, a human-readable error state with a retry option, and a data state. The app must never show a blank screen while a request is pending or has failed.
-3. **Use `useEffect` correctly:** requests will use correct dependency arrays, avoid infinite loops, and will not run on every keystroke unless a deliberate trigger or debounce is used.
-4. **Add a custom hook:** include a hook such as `useFetch(url)` that returns `data`, `loading`, and `error`.
-5. **Add search or filtering:** allow users to narrow the already-fetched data on the client.
-6. **Make the error state demonstrable:** include a development-only broken URL toggle, or otherwise make graceful network-error handling easy to test.
-7. **Deploy on Netlify:** keep the Netlify deployment configured with `npm run build` as the build command and `dist` as the publish directory.
+Aplicación de React y Vite para explorar una estructura real de tRNA y guardar observaciones sobre distintas vistas. Continúa el contenido, las ilustraciones y el estilo del proyecto 1.
 
-The existing Project 2 requirements remain in place:
+Puedes rotar la molécula, resaltar el anticodón, escribir una nota, guardar su ángulo y restaurarlo después. El cuaderno también permite filtrar, ordenar y eliminar las observaciones. Las notas duran durante la sesión: recargar la página las borra.
 
-1. **Vite + React:** use a Vite-scaffolded project. Both the development server and the production build must work correctly.
-2. **Components:** create at least five components in separate files and organize them into a sensible component tree. At least two components must receive and use `props`.
-3. **State:** implement at least three independent pieces of `useState` that produce visible changes on screen.
-4. **Lists and keys:** render at least one collection with `map` and use a stable, appropriate `key`, rather than the array index when items can be reordered.
-5. **Conditional rendering:** show, hide, or change part of the interface based on application state.
-6. **Controlled input:** include at least one form field whose value lives in React state and updates through `onChange`.
-7. **Lifted state:** share at least one piece of state between two components through a common parent.
-8. **Netlify:** deploy the application to Netlify with the following configuration:
-   - **Build command:** `npm run build`
-   - **Publish directory:** `dist`
+## Desarrollo local
 
-## Existing Project 2 foundation
-
-- Migrate the existing HTML entry point and logic into a React application structure.
-- Configure `package.json` and Vite with the `dev`, `build`, and `preview` scripts.
-- Separate the interface into five or more reusable components in their own files.
-- Convert the existing interactions to React state with `useState`, including a controlled input and conditional views.
-- Preserve the content and responsive design from Project 1 while adapting the styles to work with React components.
-- Verify the production build and deploy the application to Netlify using `dist` as the publish directory.
-
-## Local development
-
-Install the dependencies and start the Vite development server:
+Usa Node.js 24 LTS. El mínimo del proyecto es Node.js 22.12.
 
 ```bash
-npm install
+npm ci
 npm run dev
 ```
 
-To check the production build:
+Para generar producción: `npm run build`. Para verla: `npm run preview`.
 
-```bash
-npm run build
-npm run preview
-```
+La base se creó con `npm create vite@latest -- --template react`.
+Para comprobar las fórmulas y los datos de la molécula: `npm test`.
 
-The application will be available at the local URL shown by Vite, usually `http://localhost:5173/`.
+## Componentes y estado
 
-## Deployment
+`App` compone la página. `MolecularLab` coordina el visor, los controles, las notas del modelo y el cuaderno; cada componente tiene su propio archivo.
 
-The project is deployed on Netlify with:
+| Requisito                   | Implementación                                                                                                        |
+| --------------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| Vite y React                | `src/main.jsx`, `src/App.jsx`, `vite.config.js` y scripts de desarrollo y producción                                  |
+| Cinco componentes y props   | 14 componentes en `src/components/`, además de `App`; `MoleculeViewer`, `ViewerControls` y `ModelNotes` reciben props |
+| Tres estados independientes | `rotation`, `highlighted` y `observations` en `MolecularLab`; otros estados locales para menú, pestañas y formulario  |
+| Listas con claves           | Conceptos y tipos usan sus IDs; las notas usan un UUID que se conserva al ordenar o filtrar                           |
+| Renderizado condicional     | Notas vacías, herramientas de filtrado, mensajes de error, pestañas ocultas y menú adaptable                          |
+| Input controlado            | Slider, textarea y filtro reciben `value` desde estado y actualizan mediante `onChange`                               |
+| Estado elevado              | `MolecularLab` comparte ángulo y resaltado entre visor, controles, resumen y formulario                               |
+| Netlify                     | `netlify.toml` configura `npm run build`, `dist` y Node 24; falta publicar y añadir la URL real                       |
 
-```text
-Build command: npm run build
-Publish directory: dist
-```
+## Datos y archivos
 
-**Public URL:** https://project2-react1.netlify.app/
+- `src/components/`: piezas de la interfaz.
+- `src/data/`: textos y los 76 puntos C4′ del modelo.
+- `src/utils/projectStructure.js`: proyección y orden de profundidad.
+- `src/styles.css`: estilo del proyecto 1, Flexbox, Grid y ajustes para pantallas pequeñas.
+- `public/assets/`: ilustraciones originales y archivo PDB.
+- `tools/build_structure.py`: regeneración opcional de los datos y SVG.
+- `tests/structure.test.js`: pruebas del modelo con el runner de Node.
+- `docs/EXPLICACION.md`: guía en español para entender el código.
+- `docs/VERIFICACION.md`: resultados y comprobaciones antes de entregar.
+
+Python no es necesario para ejecutar ni compilar la aplicación. Para regenerar los datos: `python3 tools/build_structure.py`.
+
+## Fuentes
+
+- [PDB 1EHZ: estructura experimental de tRNA](https://www.rcsb.org/structure/1EHZ)
+- [RNA: NHGRI](https://www.genome.gov/genetics-glossary/RNA-Ribonucleic-Acid)
+- [From RNA to Protein: NCBI Bookshelf](https://www.ncbi.nlm.nih.gov/books/NBK26829/)
+
+## Publicación
+
+**URL pública: pendiente.**

@@ -1,3 +1,4 @@
+import StructureLibrary from "./components/StructureLibrary";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
 import MolecularLab from "./components/MolecularLab";
@@ -27,6 +28,7 @@ export default function App() {
         <MolecularLab />
         <Essentials />
         <RnaTypes />
+        <StructureLibrary />
         <Sources />
       </main>
       <Footer />
