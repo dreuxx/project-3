@@ -1,6 +1,11 @@
 import { useRef, useState } from "react";
 
-export default function ObservationForm({ rotation, highlighted, onSave }) {
+export default function ObservationForm({
+  rotation,
+  highlighted,
+  selectedStructure,
+  onSave,
+}) {
   const [note, setNote] = useState("");
   const [feedback, setFeedback] = useState("");
   const [hasError, setHasError] = useState(false);
@@ -48,9 +53,10 @@ export default function ObservationForm({ rotation, highlighted, onSave }) {
       />
       <div className="note-details">
         <p className="view-summary">
-          View: {rotation}° ·{" "}
+          Viewer 1EHZ: {rotation}° ·{" "}
           {highlighted ? "anticodon highlighted" : "whole strand"}
         </p>
+        <p>Linked record: {selectedStructure?.id ?? "none"}</p>
         <span id="note-count">{note.length}/240</span>
       </div>
       <button className="button" type="submit">

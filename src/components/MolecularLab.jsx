@@ -6,7 +6,7 @@ import ModelNotes from "./ModelNotes";
 import ObservationForm from "./ObservationForm";
 import ObservationList from "./ObservationList";
 
-export default function MolecularLab() {
+export default function MolecularLab({ selectedStructure, onSelectStructure }) {
   const [rotation, setRotation] = useState(0);
   const [highlighted, setHighlighted] = useState(false);
 
@@ -16,6 +16,7 @@ export default function MolecularLab() {
     const observation = {
       id: crypto.randomUUID(),
       text,
+      linkedStructure: selectedStructure,
       rotation,
       highlighted,
     };
@@ -29,6 +30,7 @@ export default function MolecularLab() {
   }
 
   function restoreObservation(observation) {
+    onSelectStructure(observation.linkedStructure ?? null);
     setRotation(observation.rotation);
     setHighlighted(observation.highlighted);
   }
@@ -71,10 +73,28 @@ export default function MolecularLab() {
         </MoleculeViewer>
         <ModelNotes rotation={rotation} highlighted={highlighted} />
       </div>
+      <div className="linked-context">
+        <p>
+          <strong>3D viewer: 1EHZ.</strong> The angle and anticodon controls
+          always refer to this tRNA model.
+        </p>
+        <p role="status">
+          {selectedStructure
+            ? `Linked archive record: ${selectedStructure.id} — ${selectedStructure.title}`
+            : "Choose an archive record below to link it to your next observation."}
+        </p>
+        <a href="#biblioteca">Choose an archive record ↓</a>
+        {selectedStructure && (
+          <button type="button" onClick={() => onSelectStructure(null)}>
+            Clear linked record
+          </button>
+        )}
+      </div>
       <div className="notebook-grid">
         <ObservationForm
           rotation={rotation}
           highlighted={highlighted}
+          selectedStructure={selectedStructure}
           onSave={saveObservation}
         />
         <ObservationList

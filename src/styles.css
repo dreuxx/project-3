@@ -1343,3 +1343,41 @@ h1 em {
   margin-bottom: 18px;
   font: 0.75rem var(--mono);
 }
+
+.linked-context {
+  margin-top: 30px;
+  padding: 22px;
+  background: #e9ebdc;
+  border-left: 2px solid #929d61;
+  font-size: 0.82rem;
+  overflow-wrap: anywhere;
+}
+.linked-context p + p {
+  margin-top: 10px;
+}
+.linked-context a {
+  display: inline-block;
+  padding-block: 12px;
+  min-height: 44px;
+}
+.linked-context button {
+  margin-left: 12px;
+  min-height: 44px;
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--ink);
+}
+.structure-card button {
+  display: block;
+  width: 100%;
+  margin-top: 10px;
+}
+.structure-card button[aria-pressed="true"] {
+  background: #e0e6ca;
+  color: var(--ink);
+  outline: 1px solid #859178;
+}
+.selected-record {
+  font-size: 0.78rem;
+  margin-top: 10px;
+}

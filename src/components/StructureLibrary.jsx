@@ -2,7 +2,10 @@ import { useState } from "react";
 import useRnaStructures from "../hooks/useRnaStructures";
 import StructureCard from "./StructureCard";
 
-export default function StructureLibrary() {
+export default function StructureLibrary({
+  selectedStructure,
+  onSelectStructure,
+}) {
   const [simulateError, setSimulateError] = useState(false);
   const [search, setSearch] = useState("");
   const [maxResolution, setMaxResolution] = useState("all");
@@ -107,7 +110,12 @@ export default function StructureLibrary() {
             ) : (
               <div className="structure-grid">
                 {filtered.map((structure) => (
-                  <StructureCard key={structure.id} structure={structure} />
+                  <StructureCard
+                    key={structure.id}
+                    structure={structure}
+                    selected={selectedStructure?.id === structure.id}
+                    onSelect={onSelectStructure}
+                  />
                 ))}
               </div>
             )}

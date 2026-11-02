@@ -66,6 +66,10 @@ export default function ObservationList({ observations, onRemove, onRestore }) {
                   ? "anticodon highlighted"
                   : "whole strand"}
               </p>
+              <p className="saved-view">
+                Viewer: 1EHZ · Linked record:{" "}
+                {observation.linkedStructure?.id ?? "none"}
+              </p>
               <p className="saved-text">{observation.text}</p>
               <div className="note-actions">
                 <button type="button" onClick={() => restoreView(observation)}>

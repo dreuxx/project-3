@@ -1,3 +1,4 @@
+import { useState } from "react";
 import StructureLibrary from "./components/StructureLibrary";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
@@ -8,6 +9,7 @@ import Sources from "./components/Sources";
 import Footer from "./components/Footer";
 
 export default function App() {
+  const [selectedStructure, setSelectedStructure] = useState(null);
   return (
     <>
       <a className="skip-link" href="#contenido">
@@ -25,10 +27,16 @@ export default function App() {
             A — U &nbsp; G — C
           </span>
         </div>
-        <MolecularLab />
+        <MolecularLab
+          selectedStructure={selectedStructure}
+          onSelectStructure={setSelectedStructure}
+        />
         <Essentials />
         <RnaTypes />
-        <StructureLibrary />
+        <StructureLibrary
+          selectedStructure={selectedStructure}
+          onSelectStructure={setSelectedStructure}
+        />
         <Sources />
       </main>
       <Footer />
