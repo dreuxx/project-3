@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="500" height="280" viewBox="0 0 500 280" role="img" aria-labelledby="title">
+  <title id="title">The ribosome contains RNA and proteins</title>
+  <path d="M133 159c-40-59 32-111 97-103 83-20 158 20 144 89-10 27-54 11-86 14-58-14-97 31-155 0" fill="#bac9a0" stroke="#81986d" stroke-width="1.5"/>
+  <path d="M141 196c8 51 164 59 204 13 18-28-74-12-107-21-37 10-70-6-97 8" fill="#d6dfc2" stroke="#97ab80" stroke-width="1.5"/>
+  <path d="M42 179c97-23 149 9 220-2 94-15 128 10 200-1" fill="none" stroke="#4d744a" stroke-width="4"/>
+  <path d="M251 90l-1-58 24-15 27 8" fill="none" stroke="#a76b47" stroke-width="3"/>
+  <g fill="#c48a5a"><circle cx="250" cy="40" r="6"/><circle cx="274" cy="17" r="6"/><circle cx="301" cy="25" r="6"/></g>
+  <g stroke="#789364" stroke-width="2" fill="none"><path d="M172 112q29-39 57-3t66-11 49 13M174 132q24-20 44-1t37-8M191 214q28 14 70 0"/></g>
+  <g font-family="Arial,sans-serif" fill="#526346" font-size="14"><text x="322" y="30">growing protein</text><text x="40" y="214">mRNA</text></g>
+</svg>

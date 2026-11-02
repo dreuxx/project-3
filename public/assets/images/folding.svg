@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="130" viewBox="0 0 320 130" role="img" aria-labelledby="title">
+  <title id="title">Diagram of a stem and loop</title>
+  <path d="M31 46h143c-11-37 89-43 105-1 22 56-86 76-105 37H31" fill="none" stroke="#637e54" stroke-width="3"/>
+  <g stroke="#9b694b" stroke-width="3" stroke-linecap="round"><path d="M58 48v32M87 48v32M116 48v32M145 48v32"/></g>
+  <g fill="#eaece2" stroke="#49633e" stroke-width="2">
+    <circle cx="58" cy="46" r="4"/><circle cx="87" cy="46" r="4"/><circle cx="116" cy="46" r="4"/><circle cx="145" cy="46" r="4"/>
+    <circle cx="58" cy="82" r="4"/><circle cx="87" cy="82" r="4"/><circle cx="116" cy="82" r="4"/><circle cx="145" cy="82" r="4"/>
+    <circle cx="196" cy="23" r="4"/><circle cx="241" cy="20" r="4"/><circle cx="277" cy="40" r="4"/><circle cx="281" cy="70" r="4"/><circle cx="249" cy="98" r="4"/>
+  </g>
+</svg>

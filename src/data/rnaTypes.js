@@ -1,0 +1,36 @@
+export const rnaTypes = [
+  {
+    id: "mrna",
+    shortName: "mRNA",
+    role: "The message",
+    name: "Messenger RNA",
+    title: "Information travels in a sequence.",
+    text: "mRNA carries a copy of the information in a gene. During translation, the ribosome reads its codons: groups of three nucleotides that specify amino acids or stop signals.",
+    takeaway: "It is the message being read.",
+    alt: "Schematic mRNA fragment with the codons AUG, GCU, and UAC grouped in threes.",
+    caption: "Sequence diagram, not to molecular scale.",
+  },
+  {
+    id: "trna",
+    shortName: "tRNA",
+    role: "The adapter",
+    name: "Transfer RNA",
+    title: "A bridge between two languages.",
+    text: "tRNA connects a codon with its corresponding amino acid. Its anticodon pairs with mRNA, while its 3′ end carries the amino acid that will be added to the protein.",
+    takeaway: "It is the adapter that makes the delivery.",
+    alt: "Diagram of a tRNA with the amino acid at the 3′ end and the anticodon at the opposite end.",
+    caption: "Functional diagram; the real model is in the explorer.",
+  },
+  {
+    id: "rrna",
+    shortName: "rRNA",
+    role: "The ribosome",
+    name: "Ribosomal RNA",
+    title: "Part of the machine that joins the pieces.",
+    text: "rRNA forms the structural and catalytic core of the ribosome, together with proteins. It helps position tRNAs and form bonds between amino acids.",
+    takeaway: "It helps build the protein.",
+    alt: "Diagram of two ribosome subunits with mRNA passing between them and an amino acid chain emerging.",
+    caption:
+      "These shapes summarize the ribosome, which contains RNA and proteins.",
+  },
+];

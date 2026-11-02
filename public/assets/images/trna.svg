@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="500" height="280" viewBox="0 0 500 280" role="img" aria-labelledby="title">
+  <title id="title">tRNA: one end carries, the other recognizes</title>
+  <g fill="none" stroke="#688653" stroke-width="9" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M299 56l-14 79-123 57q-21 10-11 28t34 2l132-72 20-91"/>
+  </g>
+  <path d="M337 59l5-20" fill="none" stroke="#9c6140" stroke-width="2"/>
+  <circle cx="345" cy="28" r="14" fill="#ba774d"/>
+  <path d="M151 207q5 25 27 16" fill="none" stroke="#c17c4f" stroke-width="10" stroke-linecap="round"/>
+  <g fill="none" stroke="#879874" stroke-width="1"><path d="M319 88h62v22"/><path d="M170 214H82v-25"/></g>
+  <g fill="#526346" font-family="Arial,sans-serif" font-size="14">
+    <text x="369" y="32">amino acid</text><text x="348" y="130">3′ end</text><text x="41" y="174">anticodon</text>
+  </g>
+</svg>

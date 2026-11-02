@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="500" height="280" viewBox="0 0 500 280" role="img" aria-labelledby="title">
+  <title id="title">A fragment of mRNA organized into codons</title>
+  <g fill="none" stroke="#a4b68a" stroke-width="2"><path d="M35 154H465"/><path d="M66 187v10h90v-10M204 187v10h90v-10M342 187v10h90v-10"/></g>
+  <rect x="58" y="105" width="108" height="66" rx="4" fill="#d5dfb8"/>
+  <rect x="196" y="105" width="108" height="66" rx="4" fill="#dde2ca"/>
+  <rect x="334" y="105" width="108" height="66" rx="4" fill="#e1d6bb"/>
+  <g fill="#354c32" font-family="Georgia,serif" font-size="30" text-anchor="middle" letter-spacing="6">
+    <text x="115" y="148">AUG</text><text x="253" y="148">GCU</text><text x="391" y="148">UAC</text>
+  </g>
+  <g fill="#57674b" font-family="Arial,sans-serif" font-size="13" text-anchor="middle">
+    <text x="112" y="224">codon 1</text><text x="250" y="224">codon 2</text><text x="388" y="224">codon 3</text>
+    <text x="36" y="138">5′</text><text x="469" y="138">3′</text>
+    <text x="250" y="56" font-size="14" letter-spacing="2">READ IN THREES</text>
+  </g>
+</svg>
