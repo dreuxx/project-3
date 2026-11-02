@@ -1,72 +1,72 @@
 # Project 3: RNA in 3D · Molecular Notebook
 
-Este proyecto conserva la aplicación de **Project 2** y solo realizará los cambios necesarios para cumplir los requisitos de **Project 3**. Se mantendrán el contenido, las ilustraciones, el estilo y la estructura actual de React.
+This project preserves the **Project 2** application and will only make the changes required to meet the **Project 3** requirements. The existing content, illustrations, styling, and React structure will remain in place.
 
-## Cambio previsto sobre Project 2
+## Planned change to Project 2
 
-La aplicación se actualizará para cumplir estos requisitos:
+The application will be updated to meet these requirements:
 
-1. **API real:** consultar una API pública que no requiera OAuth.
-2. **Tres estados en cada consulta:** mostrar una carga visible, un error entendible con opción de reintentar y los datos recibidos. Nunca debe quedar una pantalla en blanco.
-3. **`useEffect` correcto:** usar arrays de dependencias adecuados, evitar bucles infinitos y no consultar en cada pulsación sin debounce o una acción intencional.
-4. **Hook personalizado:** incorporar un hook como `useFetch(url)` que devuelva `data`, `loading` y `error`.
-5. **Búsqueda o filtro:** permitir reducir los datos ya cargados desde la interfaz.
-6. **Error demostrable:** permitir probar el estado de error con una URL rota en desarrollo o mediante el manejo de una caída de red.
-7. **Netlify:** publicar la aplicación con `npm run build` y `dist`.
+1. **Real API:** fetch from a public API that does not require OAuth.
+2. **Three states for every request:** show a visible loading state, a human-readable error with a retry option, and the received data. The app must never show a blank screen.
+3. **Correct `useEffect` usage:** use appropriate dependency arrays, avoid infinite loops, and do not fetch on every keystroke without debouncing or an intentional trigger.
+4. **Custom hook:** add a hook such as `useFetch(url)` that returns `data`, `loading`, and `error`.
+5. **Search or filtering:** allow users to narrow the already-fetched data from the interface.
+6. **Demonstrable error state:** make the error state testable with a broken URL in development or graceful network-error handling.
+7. **Netlify:** deploy the application with `npm run build` and `dist`.
 
-Aplicación de React y Vite para explorar una estructura real de tRNA y guardar observaciones sobre distintas vistas. Continúa el contenido, las ilustraciones y el estilo del proyecto 1.
+A React and Vite application for exploring a real tRNA structure and saving observations about different views. It continues the content, illustrations, and styling from Project 1.
 
-Puedes rotar la molécula, resaltar el anticodón, escribir una nota, guardar su ángulo y restaurarlo después. El cuaderno también permite filtrar, ordenar y eliminar las observaciones. Las notas duran durante la sesión: recargar la página las borra.
+You can rotate the molecule, highlight the anticodon, write a note, save its angle, and restore it later. The notebook also lets you filter, sort, and delete observations. Notes last for the current session; reloading the page clears them.
 
-## Desarrollo local
+## Local development
 
-Usa Node.js 24 LTS. El mínimo del proyecto es Node.js 22.12.
+Use Node.js 24 LTS. The project requires at least Node.js 22.12.
 
 ```bash
 npm ci
 npm run dev
 ```
 
-Para generar producción: `npm run build`. Para verla: `npm run preview`.
+To create a production build, run `npm run build`. To preview it, run `npm run preview`.
 
-La base se creó con `npm create vite@latest -- --template react`.
-Para comprobar las fórmulas y los datos de la molécula: `npm test`.
+The project was created with `npm create vite@latest -- --template react`.
+To verify the molecule formulas and data, run `npm test`.
 
-## Componentes y estado
+## Components and state
 
-`App` compone la página. `MolecularLab` coordina el visor, los controles, las notas del modelo y el cuaderno; cada componente tiene su propio archivo.
+`App` composes the page. `MolecularLab` coordinates the viewer, controls, model notes, and notebook; each component has its own file.
 
-| Requisito                   | Implementación                                                                                                        |
+| Requirement                 | Implementation                                                                                                        |
 | --------------------------- | --------------------------------------------------------------------------------------------------------------------- |
-| Vite y React                | `src/main.jsx`, `src/App.jsx`, `vite.config.js` y scripts de desarrollo y producción                                  |
-| Cinco componentes y props   | 14 componentes en `src/components/`, además de `App`; `MoleculeViewer`, `ViewerControls` y `ModelNotes` reciben props |
-| Tres estados independientes | `rotation`, `highlighted` y `observations` en `MolecularLab`; otros estados locales para menú, pestañas y formulario  |
-| Listas con claves           | Conceptos y tipos usan sus IDs; las notas usan un UUID que se conserva al ordenar o filtrar                           |
-| Renderizado condicional     | Notas vacías, herramientas de filtrado, mensajes de error, pestañas ocultas y menú adaptable                          |
-| Input controlado            | Slider, textarea y filtro reciben `value` desde estado y actualizan mediante `onChange`                               |
-| Estado elevado              | `MolecularLab` comparte ángulo y resaltado entre visor, controles, resumen y formulario                               |
-| Netlify                     | `netlify.toml` configura `npm run build`, `dist` y Node 24; falta publicar y añadir la URL real                       |
+| Vite and React              | `src/main.jsx`, `src/App.jsx`, `vite.config.js`, and development and production scripts                               |
+| Five components and props   | 14 components in `src/components/`, plus `App`; `MoleculeViewer`, `ViewerControls`, and `ModelNotes` receive props |
+| Three independent states    | `rotation`, `highlighted`, and `observations` in `MolecularLab`; other local state handles the menu, tabs, and form  |
+| Lists with keys             | Concepts and types use their IDs; notes use a UUID preserved when sorting or filtering                              |
+| Conditional rendering       | Empty notes, filtering tools, error messages, hidden tabs, and the responsive menu                                   |
+| Controlled input            | The slider, textarea, and filter receive `value` from state and update through `onChange`                            |
+| Lifted state                | `MolecularLab` shares the angle and highlight state between the viewer, controls, summary, and form                  |
+| Netlify                     | `netlify.toml` configures `npm run build`, `dist`, and Node 24; deployment and the real URL are still pending        |
 
-## Datos y archivos
+## Data and files
 
-- `src/components/`: piezas de la interfaz.
-- `src/data/`: textos y los 76 puntos C4′ del modelo.
-- `src/utils/projectStructure.js`: proyección y orden de profundidad.
-- `src/styles.css`: estilo del proyecto 1, Flexbox, Grid y ajustes para pantallas pequeñas.
-- `public/assets/`: ilustraciones originales y archivo PDB.
-- `tools/build_structure.py`: regeneración opcional de los datos y SVG.
-- `tests/structure.test.js`: pruebas del modelo con el runner de Node.
-- `docs/EXPLICACION.md`: guía en español para entender el código.
-- `docs/VERIFICACION.md`: resultados y comprobaciones antes de entregar.
+- `src/components/`: interface components.
+- `src/data/`: text and the model's 76 C4′ points.
+- `src/utils/projectStructure.js`: projection and depth ordering.
+- `src/styles.css`: Project 1 styling, Flexbox, Grid, and small-screen adjustments.
+- `public/assets/`: original illustrations and PDB file.
+- `tools/build_structure.py`: optional data and SVG regeneration.
+- `tests/structure.test.js`: model tests using the Node runner.
+- `docs/EXPLICACION.md`: guide for understanding the code.
+- `docs/VERIFICACION.md`: results and checks completed before submission.
 
-Python no es necesario para ejecutar ni compilar la aplicación. Para regenerar los datos: `python3 tools/build_structure.py`.
+Python is not required to run or build the application. To regenerate the data, run `python3 tools/build_structure.py`.
 
-## Fuentes
+## Sources
 
 - [PDB 1EHZ: estructura experimental de tRNA](https://www.rcsb.org/structure/1EHZ)
 - [RNA: NHGRI](https://www.genome.gov/genetics-glossary/RNA-Ribonucleic-Acid)
 - [From RNA to Protein: NCBI Bookshelf](https://www.ncbi.nlm.nih.gov/books/NBK26829/)
 
-## Publicación
+## Deployment
 
-**URL pública: pendiente.**
+**Public URL: https://apirea.netlify.app/**
