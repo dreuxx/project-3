@@ -15,8 +15,15 @@ export async function fetchStructures({ signal, simulateError = false }) {
           `The data service returned an error (${response.status}).`,
         );
       }
-      const entry = await response.json();
-      if (entry.rcsb_id !== id || typeof entry.struct?.title !== "string") {
+      let entry;
+      try {
+        entry = await response.json();
+      } catch {
+        throw new Error(
+          "The data service returned an unreadable response. Please retry.",
+        );
+      }
+      if (entry?.rcsb_id !== id || typeof entry.struct?.title !== "string") {
         throw new Error(
           "The data service returned an unexpected response. Please retry.",
         );

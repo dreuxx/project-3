@@ -68,3 +68,17 @@ Referencias para estudiar:
 - [Estado: memoria de un componente](https://react.dev/learn/state-a-components-memory)
 - [Listas en React](https://react.dev/learn/rendering-lists)
 - [Inicio con Vite](https://vite.dev/guide/)
+
+## Actualización del proyecto 3: API y asincronía
+
+`fetchStructures` pide tres registros públicos en paralelo. `Promise.all` solo entrega la colección cuando las tres respuestas se han completado; si una falla, se muestra el error de la colección entera. `response.ok` se comprueba porque fetch no lanza automáticamente una excepción por un 404.
+
+`useRnaStructures` empieza en loading. Su efecto ejecuta la consulta, pasa a data cuando termina y a error cuando falla. Un solo objeto de estado evita combinaciones contradictorias de carga, error y datos. El hook expone esos valores mediante `data`, `loading` y `error`.
+
+El array de dependencias contiene `simulateError` y `attempt`. Escribir en el buscador solo cambia el filtro local; no reinicia el efecto. Retry incrementa attempt y provoca una nueva consulta.
+
+El efecto crea un AbortController y devuelve una limpieza que cancela las solicitudes. La variable cancelled también impide actualizar la pantalla con respuestas antiguas. Un temporizador de 12 segundos aborta una espera demasiado larga y muestra un mensaje; se limpia tanto al terminar como al desmontar.
+
+Probar error cambia el identificador solicitado por XXXX: la API real devuelve 404. No se simula el error únicamente cambiando un texto en la interfaz. Desactivar la casilla devuelve el hook al modo de datos válidos.
+
+`App` mantiene el registro seleccionado para compartirlo entre `StructureLibrary` y `MolecularLab`. Una nota guarda una copia de esa referencia junto con su texto y el ángulo. Al restaurar se recuperan ambos valores, pero el modelo 3D continúa siendo 1EHZ.
