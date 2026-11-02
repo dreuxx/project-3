@@ -29,14 +29,12 @@ export default function StructureCard({ structure, selected, onSelect }) {
         aria-pressed={selected}
         onClick={() => onSelect(structure)}
       >
-        {selected
-          ? `${structure.id} selected`
-          : `Link ${structure.id} to a note`}
+        {selected ? `${structure.id} selected` : `View ${structure.id} in 3D`}
       </button>
       {selected && (
         <p className="selected-record" role="status">
           Linked record: {structure.id}.{" "}
-          <a href="#explorar">Write an observation ↑</a>
+          <a href="#explorar">Open the 3D viewer ↑</a>
         </p>
       )}
     </article>

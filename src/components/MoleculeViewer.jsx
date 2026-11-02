@@ -1,17 +1,25 @@
-import points from "../data/structure.json";
 import { projectStructure } from "../utils/projectStructure";
 
-export default function MoleculeViewer({ rotation, highlighted, children }) {
+export default function MoleculeViewer({
+  points,
+  structureId,
+  chainId,
+  rotation,
+  highlighted,
+  children,
+}) {
   const shapes = projectStructure(points, rotation);
+  const pointRadius = points.length > 300 ? 1.8 : points.length > 100 ? 3 : 5;
+  const lineWidth = points.length > 300 ? 1.8 : points.length > 100 ? 4 : 7;
 
   return (
     <figure className="molecule-viewer">
       <div className="viewer-topline">
         <span>
           <span className="small-dot" aria-hidden="true" />
-          Strand A
+          RNA chain {chainId}
         </span>
-        <span>1EHZ / tRNA</span>
+        <span>{structureId} / RNA</span>
       </div>
       <svg
         id="rna-model"
@@ -19,9 +27,10 @@ export default function MoleculeViewer({ rotation, highlighted, children }) {
         role="img"
         aria-labelledby="model-title model-desc"
       >
-        <title id="model-title">Simplified tRNA structure</title>
+        <title id="model-title">Simplified RNA structure {structureId}</title>
         <desc id="model-desc">
-          76 points follow the tRNA strand. View rotated {rotation} degrees.
+          {points.length} points follow RNA chain {chainId}. View rotated{" "}
+          {rotation} degrees.
           {highlighted &&
             " Anticodon highlighted in orange: positions 34, 35, and 36."}
         </desc>
@@ -36,7 +45,7 @@ export default function MoleculeViewer({ rotation, highlighted, children }) {
                   x2={shape.x2}
                   y2={shape.y2}
                   stroke="#a8bd82"
-                  strokeWidth="7"
+                  strokeWidth={lineWidth}
                   strokeLinecap="round"
                 />
               );
@@ -48,7 +57,7 @@ export default function MoleculeViewer({ rotation, highlighted, children }) {
                 key={shape.id}
                 cx={shape.x}
                 cy={shape.y}
-                r={isAnticodon ? 8 : 5}
+                r={isAnticodon ? pointRadius + 3 : pointRadius}
                 fill={isAnticodon ? "#eda77c" : "#dce7b8"}
                 stroke="#273e32"
                 strokeWidth="1.5"
@@ -71,7 +80,8 @@ export default function MoleculeViewer({ rotation, highlighted, children }) {
       {children}
       <figcaption>
         Each point represents a C4′ carbon. Lines connect consecutive
-        nucleotides; this view simplifies the atomic structure.
+        nucleotides; gaps are not bridged. This is the first deposited model and
+        the selected RNA chain, simplified to its resolved backbone.
       </figcaption>
     </figure>
   );

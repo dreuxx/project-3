@@ -1381,3 +1381,33 @@ h1 em {
   font-size: 0.78rem;
   margin-top: 10px;
 }
+
+.chain-picker {
+  display: block;
+  margin-bottom: 20px;
+  font-size: 0.85rem;
+}
+.chain-picker select {
+  display: block;
+  max-width: 100%;
+  min-height: 44px;
+  padding: 8px;
+  margin-top: 6px;
+  background: var(--paper);
+  color: var(--ink);
+  font: inherit;
+  border: 1px solid var(--line);
+}
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.65;
+}
+.viewer-controls {
+  border: 0;
+  margin: 0;
+}
+.structure-card h3,
+.explorer-notes > p,
+.spec-list dd {
+  overflow-wrap: anywhere;
+}

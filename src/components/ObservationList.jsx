@@ -67,7 +67,8 @@ export default function ObservationList({ observations, onRemove, onRestore }) {
                   : "whole strand"}
               </p>
               <p className="saved-view">
-                Viewer: 1EHZ · Linked record:{" "}
+                Viewer: {observation.linkedStructure?.id ?? "1EHZ"} · Chain:{" "}
+                {observation.chainId ?? "A"} · Linked record:{" "}
                 {observation.linkedStructure?.id ?? "none"}
               </p>
               <p className="saved-text">{observation.text}</p>

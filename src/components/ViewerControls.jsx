@@ -1,4 +1,5 @@
 export default function ViewerControls({
+  canHighlight = true,
   rotation,
   highlighted,
   onRotationChange,
@@ -28,10 +29,15 @@ export default function ViewerControls({
         </button>
         <button
           type="button"
-          aria-pressed={highlighted}
+          disabled={!canHighlight}
+          aria-pressed={canHighlight && highlighted}
           onClick={() => onHighlightChange(!highlighted)}
         >
-          {highlighted ? "Hide anticodon highlight" : "Highlight anticodon"}
+          {!canHighlight
+            ? "Anticodon annotation unavailable"
+            : highlighted
+              ? "Hide anticodon highlight"
+              : "Highlight anticodon"}
         </button>
         <button type="button" onClick={onReset}>
           Reset view

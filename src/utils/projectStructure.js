@@ -11,15 +11,21 @@ export function projectStructure(points, degrees) {
       y: 250 + y * scale,
       z: -x * Math.sin(radians) + z * Math.cos(radians),
       residue: point.residue,
+      key: point.key ?? String(point.residue),
+      sequence: point.sequence,
     };
   });
   const shapes = [];
 
   projected.forEach((point, index) => {
-    if (index > 0) {
+    if (
+      index > 0 &&
+      (point.sequence == null ||
+        point.sequence === projected[index - 1].sequence + 1)
+    ) {
       const previous = projected[index - 1];
       shapes.push({
-        id: `line-${point.residue}`,
+        id: `line-${point.key}`,
         kind: "line",
         x1: previous.x,
         y1: previous.y,
@@ -30,7 +36,7 @@ export function projectStructure(points, degrees) {
     }
     shapes.push({
       ...point,
-      id: `point-${point.residue}`,
+      id: `point-${point.key}`,
       kind: "circle",
       depth: point.z + 0.1,
     });

@@ -1,6 +1,8 @@
 import { useRef, useState } from "react";
 
 export default function ObservationForm({
+  viewerId = "1EHZ",
+  disabled = false,
   rotation,
   highlighted,
   selectedStructure,
@@ -20,7 +22,10 @@ export default function ObservationForm({
       noteInput.current.focus();
       return;
     }
-    onSave(text);
+    if (onSave(text) === false) {
+      setFeedback("Wait for the structure to load before saving.");
+      return;
+    }
     setNote("");
     setHasError(false);
     setFeedback("Observation saved with the current view.");
@@ -53,13 +58,13 @@ export default function ObservationForm({
       />
       <div className="note-details">
         <p className="view-summary">
-          Viewer 1EHZ: {rotation}° ·{" "}
+          Viewer {viewerId}: {rotation}° ·{" "}
           {highlighted ? "anticodon highlighted" : "whole strand"}
         </p>
         <p>Linked record: {selectedStructure?.id ?? "none"}</p>
         <span id="note-count">{note.length}/240</span>
       </div>
-      <button className="button" type="submit">
+      <button className="button" type="submit" disabled={disabled}>
         Save observation <span aria-hidden="true">+</span>
       </button>
       <p

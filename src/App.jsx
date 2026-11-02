@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import StructureLibrary from "./components/StructureLibrary";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
@@ -10,6 +10,12 @@ import Footer from "./components/Footer";
 
 export default function App() {
   const [selectedStructure, setSelectedStructure] = useState(null);
+  const selectStructure = useCallback((structure) => {
+    setSelectedStructure(structure);
+    const heading = document.getElementById("explorar-titulo");
+    heading?.focus({ preventScroll: true });
+    heading?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }, []);
   return (
     <>
       <a className="skip-link" href="#contenido">
@@ -29,13 +35,13 @@ export default function App() {
         </div>
         <MolecularLab
           selectedStructure={selectedStructure}
-          onSelectStructure={setSelectedStructure}
+          onSelectStructure={selectStructure}
         />
         <Essentials />
         <RnaTypes />
         <StructureLibrary
           selectedStructure={selectedStructure}
-          onSelectStructure={setSelectedStructure}
+          onSelectStructure={selectStructure}
         />
         <Sources />
       </main>
